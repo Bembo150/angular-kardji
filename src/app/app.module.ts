@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { KardComponentComponent } from './kard-component/kard-component.component';
 import { NavComponentComponent } from './nav-component/nav-component.component';
 import { FootComponentComponent } from './foot-component/foot-component.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FootComponentComponent } from './foot-component/foot-component.componen
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [],

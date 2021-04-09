@@ -10,17 +10,18 @@ import { KardsService } from '../services/kards.service';
 export class KardComponentComponent implements OnInit {
 
   cartas : Kard[] = [];
+  cartas2 : Kard[] = [{id : 1, id_leccion : 1, as_component : "jajaj", key_word : "dos gatos", short_story : "el rocomoco",kanji_char : "roberto"},{id : 2, id_leccion : 1, as_component : "jajaj", key_word : "dos gatos", short_story : "el rocomoco",kanji_char : "roberto"},{id : 3, id_leccion : 1, as_component : "jajaj", key_word : "dos gatos", short_story : "el rocomoco",kanji_char : "roberto"},{id : 4, id_leccion : 1, as_component : "jajaj", key_word : "dos gatos", short_story : "el rocomoco",kanji_char : "roberto"}];
 
   constructor(private kardService: KardsService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
 
-    this.kardService.getKards().subscribe(
+    this.kardService.getKards()
+    .subscribe(
       kards => this.cartas = kards,
       error => console.log(error),
-      ()=> console.log("Petición Completada")
-    )
-
+      () => console.log(this.cartas)
+    );
   }
 
 }

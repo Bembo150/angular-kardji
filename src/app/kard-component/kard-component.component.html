@@ -5,10 +5,7 @@
     <div class="card-header">Header</div>
     <div class="card-body">
       <h4 class="card-title">Primary card title</h4>
-      <p class="card-text">
-        Some quick example text to build on the card title and make up the bulk
-        of the card's content.
-      </p>
+
     </div>
   </div>
 
@@ -33,6 +30,11 @@
           iphone. Seitan aliquip quis cardigan american apparel, butcher
           voluptate nisi qui.
         </p>
+        <ul>
+          <li *ngFor="let carta of cartas">
+            id: {{carta.id}}
+          </li>
+        </ul>
       </div>
       <div class="tab-pane fade" id="profile">
         <p>
