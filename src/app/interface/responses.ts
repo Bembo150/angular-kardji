@@ -8,6 +8,6 @@ export interface ResponseKards {
 
 export interface ResponseKard {
 
-  kard : Kard;
+  kards : Kard;
 
 }

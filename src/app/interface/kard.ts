@@ -1,10 +1,9 @@
 export interface Kard {
 
-  id?: number;
-  id_leccion?: number;
-  key_word: string;
-  short_story: string;
-  as_component: string;
-  kanji_char: string;
+  id: number;
+  keyWord: string;
+  shortStory: string;
+  asComponent: string;
+  kanjiChar: string;
 
 }
