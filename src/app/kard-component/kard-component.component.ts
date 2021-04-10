@@ -11,6 +11,7 @@ export class KardComponentComponent implements OnInit {
 
   constructor(private kardService: KardsService) { }
   kards : Kard[] = [];
+  index : number = 0;
   ngOnInit() {
 
     this.kardService.getKards().subscribe(
@@ -18,8 +19,7 @@ export class KardComponentComponent implements OnInit {
       error => console.log(error),
       () => console.log("Petición Completada")
     );
-
-      console.log(this.kards)
   }
+
 
 }

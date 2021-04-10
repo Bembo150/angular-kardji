@@ -47,6 +47,9 @@
   </div>
 </div>
 
+<!--BotonSiguiente-->
+
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -57,10 +60,10 @@
 
   <tbody>
 
-    <tr *ngFor="let product of kards">
+    <tr>
 
-      <td>{{product.id}}</td>
-      <td>{{product.kanjiChar}}</td>
+      <td>{{kards[index].id}}</td>
+      <td>{{kards[index].kanjiChar}}</td>
 
 
     </tr>
