@@ -2,10 +2,9 @@
 <div class="d-flex justify-content-center">
   <!--Kard-->
   <div class="card border-primary mb-3" style="max-width: 20rem">
-    <div class="card-header">Header</div>
+    <div class="card-header">{{kards[index].keyWord}} : {{kards[index].kanjiChar}}</div>
     <div class="card-body">
-      <h4 class="card-title">Primary card title</h4>
-
+      <p>{{kards[index].kanjiChar}}</p>
     </div>
   </div>
 
@@ -13,22 +12,16 @@
   <div class="w-50 p-3">
     <ul class="nav nav-tabs">
       <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
+        <a class="nav-link active" data-toggle="tab" href="#descrip">Descripcion</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#profile">Profile</a>
       </li>
     </ul>
     <div id="myTabContent" class="tab-content">
-      <div class="tab-pane fade active show" id="home">
+      <div class="tab-pane fade active show" id="descrip">
         <p>
-          Raw denim you probably haven't heard of them jean shorts Austin.
-          Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache
-          cliche tempor, williamsburg carles vegan helvetica. Reprehenderit
-          butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi,
-          qui irure terry richardson ex squid. Aliquip placeat salvia cillum
-          iphone. Seitan aliquip quis cardigan american apparel, butcher
-          voluptate nisi qui.
+          {{kards[index].shortStory}}
         </p>
 
       </div>
@@ -58,12 +51,12 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody *ngFor="let a of kards">
 
     <tr>
 
-      <td>{{kards[index].id}}</td>
-      <td>{{kards[index].kanjiChar}}</td>
+      <td>{{a.id}}</td>
+      <td>{{a.kanjiChar}}</td>
 
 
     </tr>
