@@ -21,5 +21,13 @@ export class KardComponentComponent implements OnInit {
     );
   }
 
+  nextKard() {
+    if(this.index === this.kards.length){
+      this.index = 0;
+    }else{
+      this.index++;
+    }
+  }
+
 
 }
