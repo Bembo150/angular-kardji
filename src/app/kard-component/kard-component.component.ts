@@ -17,7 +17,7 @@ export class KardComponentComponent implements OnInit {
     this.kardService.getKards().subscribe(
       kards => this.kards = kards,
       error => console.log(error),
-      () => console.log("Petición Completada")
+      () => console.log("Operacion completada con exito.")
     );
   }
 
