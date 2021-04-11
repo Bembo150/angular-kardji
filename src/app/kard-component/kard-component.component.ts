@@ -29,5 +29,18 @@ export class KardComponentComponent implements OnInit {
     }
   }
 
+  previousKard() {
+    if(this.index === 0){
+      this.index = this.kards.length;
+    }else{
+      this.index--;
+    }
+  }
+
+  kardIndexPag(kardIndex : number) {
+    this.index = kardIndex;
+
+  }
+
 
 }
