@@ -49,10 +49,10 @@
       <button class="page-link" (click)="previousKard()" href="#">&laquo;</button>
     </li>
     <li class="page-item active" *ngFor="let foo of kards; let x = index">
-      <a class="page-link" (click)="kardIndexPag(x)" href="#">{{x + 1}}</a>
+      <button class="page-link" (click)="kardIndexPag(x)" >{{x + 1}}</button>
     </li>
     <li class="page-item">
-      <a class="page-link" href="#" (click)="nextKard()">&raquo;</a>
+      <button class="page-link"  (click)="nextKard()">&raquo;</button>
     </li>
   </ul>
 </div>
