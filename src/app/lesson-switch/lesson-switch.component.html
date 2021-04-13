@@ -1,10 +1,7 @@
-<form>
-  <fieldset>
-    <div class="form-group">
-      <label for="exampleSelect1">Example select</label>
-      <select class="form-control" id="exampleSelect1">
-        <option>1</option>
-      </select>
-    </div>
-  </fieldset>
-</form>
+<button
+  *ngFor="let i of genArray(lessons.length); let x = index"
+  (click)="activeLesson(x)"
+  class="btn btn-primary mx-auto"
+>
+  <p>Lección {{ x + 1 }}</p>
+</button>

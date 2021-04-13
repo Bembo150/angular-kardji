@@ -15,15 +15,21 @@ export class KardComponentComponent implements OnInit {
 
   kards: Kard[] = [];
   lesson : Lesson | undefined
+  lessonNum = 1;
   index : number = 0;
 
   ngOnInit() {
 
-    this.lessonService.getLessonById(1).subscribe(
-      lesson => this.kards = Array.from(lesson.cartases).sort(),
+    this.lessonService.getLessonById(this.lessonNum).subscribe(
+      lesson => this.kards = Array.from(lesson.cartases).sort(((a, b) => a.id - b.id)),
       error => console.log(error),
       () => console.log("Operacion completada con exito.")
     );
+  }
+
+  countChange(event : number){
+    this.lessonNum = event
+    this.ngOnInit()
   }
 
   nextKard() {
