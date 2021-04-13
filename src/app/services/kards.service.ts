@@ -14,7 +14,8 @@ export class KardsService {
 
   constructor(private http:HttpClient) { }
 
-    getKards(): Observable<Kard[]> {
+  getKards(): Observable<Kard[]> {
+
     return this.http.get<Kard[]>(this.kardsURL).pipe(
 
     );

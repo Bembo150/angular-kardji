@@ -1,17 +1,99 @@
-<form class="dropdown-menu p-4">
-  <div class="form-group">
-    <label for="exampleDropdownFormEmail2">Email address</label>
-    <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
+<div class="d-flex justify-content-center card" style="width: 60%;">
+  <div class="card-header bg-success text-white">Registrarse en la APP.</div>
+  <div class="card">
+   <form (ngSubmit)="addUser()" #formProduct="ngForm">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-sm-right">Nombre</label>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            [(ngModel)]="User.name"
+            minlength="5"
+            maxlength="60"
+            required
+            #descModel="ngModel"
+            [ngClass]="{
+              'is-valid': descModel.touched && descModel.valid,
+              'is-invalid': descModel.touched && descModel.invalid
+            }"
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="descModel.invalid && descModel.errors?.required"
+          >
+            La campo nombre es obligatoria
+          </div>
+          <div
+            class="invalid-feedback"
+          *ngIf="descModel.invalid && descModel.errors?.minlength"
+          >
+            Te faltan
+            {{
+              descModel.errors?.minlength.requiredLength -
+                descModel.errors?.minlength.actualLength
+            }}
+            caracteres
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-sm-right">Contraseña</label>
+        <div class="col-sm-10">
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            [(ngModel)]="User.password"
+            required
+            #priceModel="ngModel"
+            [ngClass]="{
+              'is-valid': priceModel.touched && priceModel.valid,
+              'is-invalid': priceModel.touched && priceModel.invalid
+            }"
+          />
+          <div class="invalid-feedback">El campo contraseña es obligatorio</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 col-form-label text-sm-right">Image</label>
+        <div class="col-sm-10">
+          <input
+            type="file"
+            name="image"
+            class="form-control"
+            accept="image/*"
+            (change)="loadImage(imageInput)"
+            #imageInput
+            [(ngModel)]="imageFile"
+            required
+            #imgModel="ngModel"
+            [ngClass]="{
+              'is-valid': imgModel.touched && imgModel.valid,
+              'is-invalid': imgModel.touched && imgModel.invalid
+            }"
+          />
+          <div class="invalid-feedback">Es obligatorio seleccionar una imagen</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-10 offset-sm-2">
+          <img class="product-img" [src]="User.imageUrl" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="offset-sm-2 col-sm-10">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="formProduct.invalid"
+          >
+            Registrarse
+          </button>
+        </div>
+      </div>
+    </form>
+  <!--{{User | json}}-->
   </div>
-  <div class="form-group">
-    <label for="exampleDropdownFormPassword2">Password</label>
-    <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
-  </div>
-  <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="dropdownCheck2">
-    <label class="form-check-label" for="dropdownCheck2">
-      Remember me
-    </label>
-  </div>
-  <button type="submit" class="btn btn-primary">Sign in</button>
-</form>
+</div>
