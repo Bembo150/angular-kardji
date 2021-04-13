@@ -10,13 +10,12 @@ export class LessonsService {
 
   constructor(private http:HttpClient) { }
 
+  private kardsURL = 'http://localhost:8080/api/';
 
   getLessonById(lessonId : number): Observable<Lesson> {
 
-  }
+    return this.http.get<Lesson>(this.kardsURL + "lecciones/" + lessonId);
 
-  getKardsByLesson(lessonId : number): Observable<Kard[]> {
-    return this.http.get<Kard[]>(this.kardsURL + "cartasByLesson/" + lessonId).pipe();
   }
 
 }

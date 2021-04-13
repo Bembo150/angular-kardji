@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Kard } from '../interface/kard';
-import { KardsService } from '../services/kards.service';
+import { Lesson } from '../interface/lesson';
+import { LessonsService } from '../services/lessons.service';
 
 @Component({
   selector: 'kard-component',
@@ -9,16 +10,17 @@ import { KardsService } from '../services/kards.service';
 })
 export class KardComponentComponent implements OnInit {
 
-  constructor(private kardService: KardsService) {
+  constructor(private lessonService: LessonsService) {
   }
 
-  kards : Kard[] = [];
+  kards: Kard[] = [];
+  lesson : Lesson | undefined
   index : number = 0;
 
   ngOnInit() {
 
-    this.kardService.getKardsByLesson(1).subscribe(
-      kards => this.kards = kards,
+    this.lessonService.getLessonById(1).subscribe(
+      lesson => this.kards = Array.from(lesson.cartases).sort(),
       error => console.log(error),
       () => console.log("Operacion completada con exito.")
     );
