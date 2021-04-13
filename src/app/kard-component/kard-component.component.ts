@@ -28,8 +28,10 @@ export class KardComponentComponent implements OnInit {
   }
 
   countChange(event : number){
-    this.lessonNum = event
-    this.ngOnInit()
+    if(this.lessonNum != event){
+      this.lessonNum = event
+      this.ngOnInit()
+    }
   }
 
   nextKard() {
