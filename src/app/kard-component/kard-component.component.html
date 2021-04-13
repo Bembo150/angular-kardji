@@ -2,7 +2,7 @@
 <div class="d-flex justify-content-center">
   <!--Kard-->
   <div class="card border-primary mb-3" style="max-width: 20rem">
-    <div class="card-header mx-auto">{{kards[index].keyWord}}</div>
+    <div class="card-header mx-auto"><p >{{kards[index].keyWord}}</p></div>
     <div class="card-body">
       <h4 class="card-title">{{kards[index].kanjiChar}}</h4>
 
@@ -21,7 +21,7 @@
       </li>
     </ul>
     <div id="myTabContent" class="tab-content">
-      <div class="tab-pane fade active show" id="descrip">
+      <div class="tab-pane fade active show" id="descrip" >
         <p>
           {{kards[index].shortStory}}
         </p>

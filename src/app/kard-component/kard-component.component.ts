@@ -9,9 +9,12 @@ import { KardsService } from '../services/kards.service';
 })
 export class KardComponentComponent implements OnInit {
 
-  constructor(private kardService: KardsService) { }
+  constructor(private kardService: KardsService) {
+  }
+
   kards : Kard[] = [];
   index : number = 0;
+
   ngOnInit() {
 
     this.kardService.getKards().subscribe(
@@ -41,6 +44,4 @@ export class KardComponentComponent implements OnInit {
     this.index = kardIndex;
 
   }
-
-
 }
