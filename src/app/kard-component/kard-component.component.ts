@@ -17,7 +17,7 @@ export class KardComponentComponent implements OnInit {
 
   ngOnInit() {
 
-    this.kardService.getKards().subscribe(
+    this.kardService.getKardsByLesson(1).subscribe(
       kards => this.kards = kards,
       error => console.log(error),
       () => console.log("Operacion completada con exito.")

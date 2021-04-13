@@ -10,15 +10,16 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class KardsService {
 
-  private kardsURL = 'http://localhost:8080/api/cartas';
+  private kardsURL = 'http://localhost:8080/api/';
 
   constructor(private http:HttpClient) { }
 
-    getKards(): Observable<Kard[]> {
-    return this.http.get<Kard[]>(this.kardsURL).pipe(
+  getKards(): Observable<Kard[]> {
+    return this.http.get<Kard[]>(this.kardsURL + "cartas").pipe();
+  }
 
-    );
-
+  getKardsByLesson(lessonId : number): Observable<Kard[]> {
+    return this.http.get<Kard[]>(this.kardsURL + "cartasByLesson/" + lessonId).pipe();
   }
 
   insert(Kard: Kard): Observable<Kard> {

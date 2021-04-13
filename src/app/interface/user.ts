@@ -1,3 +1,5 @@
+import { Utiliza } from "./utiliza";
+
 export interface User {
   id: number;
   type: string;
@@ -6,4 +8,5 @@ export interface User {
   lastLogIn: string;
   password: string;
   imageUrl: string;
+  utilizas : Set<Utiliza>;
 }

@@ -9,6 +9,7 @@ import { NavComponentComponent } from './nav-component/nav-component.component';
 import { FootComponentComponent } from './foot-component/foot-component.component';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponentComponent } from './register-component/register-component.component';
+import { LessonSwitchComponent } from './lesson-switch/lesson-switch.component';
 
 const APP_ROUTES: Route[] = [{path:'inicio', component:AppComponent},
 {path:'kanjis', component:KardComponentComponent},
@@ -22,7 +23,8 @@ const APP_ROUTES: Route[] = [{path:'inicio', component:AppComponent},
     KardComponentComponent,
     NavComponentComponent,
     FootComponentComponent,
-    RegisterComponentComponent
+    RegisterComponentComponent,
+    LessonSwitchComponent
   ],
   imports: [
     BrowserModule,
