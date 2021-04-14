@@ -11,11 +11,10 @@ import { FormsModule } from '@angular/forms';
 import { RegisterComponentComponent } from './register-component/register-component.component';
 import { LessonSwitchComponent } from './lesson-switch/lesson-switch.component';
 
-const APP_ROUTES: Route[] = [{path:'inicio', component:AppComponent},
-{path:'kanjis', component:KardComponentComponent},
+const APP_ROUTES: Route[] = [{path:'app', component:KardComponentComponent},
 {path:'register', component:RegisterComponentComponent},
-{path:'', redirectTo:'/inicio',pathMatch:'full'},
-{path:'**', redirectTo:'/inicio',pathMatch:'full'}];
+{path:'', redirectTo:'/app',pathMatch:'full'},
+{path:'**', redirectTo:'/app',pathMatch:'full'}];
 
 @NgModule({
   declarations: [
