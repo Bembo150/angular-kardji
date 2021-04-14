@@ -8,5 +8,4 @@ export interface User {
   lastLogIn: string;
   password: string;
   imageUrl: string;
-  utilizas : Set<Utiliza>;
 }

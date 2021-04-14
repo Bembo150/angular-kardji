@@ -67,8 +67,7 @@ export class RegisterComponentComponent implements OnInit {
       lastLogIn: '',
       name: '',
       password: '',
-      imageUrl: '',
-      utilizas : new Set<Utiliza>()
+      imageUrl: ''
     };
     this.imageFile = '';
   }
