@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../interface/user';
+import { Utiliza } from '../interface/utiliza';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -67,6 +68,7 @@ export class RegisterComponentComponent implements OnInit {
       name: '',
       password: '',
       imageUrl: '',
+      utilizas : new Set<Utiliza>()
     };
     this.imageFile = '';
   }
