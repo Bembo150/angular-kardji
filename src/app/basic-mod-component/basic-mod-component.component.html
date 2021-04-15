@@ -1,0 +1,25 @@
+
+<div class="d-flex flex-row align-items-center justify-content-center">
+
+  <div>
+    <p>{{kards[auxRandomNum].keyWord}}</p>
+  </div>
+
+  <div >
+    <span class="d-flex flex-row">
+      <button type="button" class="btn btn-outline-primary" *ngFor="let num of aux1" (click)="checkAnswer(auxRandomNum, num)"><p>{{kards[num].kanjiChar}}</p></button>
+    </span>
+    <span class="d-flex flex-row">
+      <button type="button" class="btn btn-outline-primary" *ngFor="let num of aux2" (click)="checkAnswer(auxRandomNum, num)"><p>{{kards[num].kanjiChar}}</p></button>
+    </span>
+    <span class="d-flex flex-row">
+      <button type="button" class="btn btn-outline-primary" *ngFor="let num of aux3" (click)="checkAnswer(auxRandomNum, num)"><p>{{kards[num].kanjiChar}}</p></button>
+    </span>
+  </div>
+
+</div>
+
+<div class="progress">
+  <div class="progress-bar" role="progressbar" [style.width.%]="progressBar" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+

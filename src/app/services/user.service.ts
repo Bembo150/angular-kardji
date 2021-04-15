@@ -25,9 +25,13 @@ export class UserService {
   getUsuarios(): Observable<User[]> {
 
     return this.http.get<User[]>(this.usersURL).pipe(
-
     );
+  }
 
+  getUsuarioById(userId : number) : Observable<User> {
+    return this.http.get<User>(this.usersURL + "/" + userId).pipe(
+      map(resp => resp)
+    )
   }
 
 }
