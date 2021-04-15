@@ -12,11 +12,15 @@ import { RegisterComponentComponent } from './register-component/register-compon
 import { LessonSwitchComponent } from './lesson-switch/lesson-switch.component';
 import { BasicModComponentComponent } from './basic-mod-component/basic-mod-component.component';
 import { ModalidadResultComponentComponent } from './modalidad-result-component/modalidad-result-component.component';
+import { LogInComponent } from './log-in/log-in.component';
 
 const APP_ROUTES: Route[] = [{path:'app', component:KardComponentComponent},
 {path:'register', component:RegisterComponentComponent},
+{path:'login', component:LogInComponent},
+{path:'auth/login',component:LogInComponent},
 {path: 'mod', component:BasicModComponentComponent},
 {path: 'result', component:ModalidadResultComponentComponent},
+{path:'auth/register', component:RegisterComponentComponent},
 {path:'', redirectTo:'/app',pathMatch:'full'},
 {path:'**', redirectTo:'/app',pathMatch:'full'}];
 
@@ -29,7 +33,8 @@ const APP_ROUTES: Route[] = [{path:'app', component:KardComponentComponent},
     RegisterComponentComponent,
     LessonSwitchComponent,
     BasicModComponentComponent,
-    ModalidadResultComponentComponent
+    ModalidadResultComponentComponent,
+    LogInComponent
   ],
   imports: [
     BrowserModule,

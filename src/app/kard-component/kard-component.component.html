@@ -1,58 +1,73 @@
 <!--Kard Content-->
 <div class="d-flex justify-content-center">
   <!--Kard-->
-  <div class="card border-primary mb-3" style="max-width: 20rem">
-    <div class="card-header mx-auto"><p >{{kards[index].keyWord}}</p></div>
+  <div class="card border-primary w-50">
+    <div class="card-header">
+      <h5 class="card-title">{{ kards[index].keyWord }}</h5>
+    </div>
     <div class="card-body">
-      <h4 class="card-title">{{kards[index].kanjiChar}}</h4>
-
-
+      <h1 class="card-text d-flex justify-content-center">{{ kards[index].kanjiChar }}</h1>
+      <p class="d-flex justify-content-center">{{kards[index].id}}</p>
     </div>
   </div>
 
   <!--Description TextArea-->
   <div class="w-50 p-3">
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#descrip">Descripcion</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#profile">Profile</a>
+    <!-- Nav tabs -->
+
+    <ul class="nav nav-pills nav-fill" role="tablist">
+      <li
+        class="nav-item"
+        *ngFor="let wallet of coinwallet; let first = first"
+        [ngClass]="{ firstItem: first }"
+        role="presentation"
+        [class.active]="selectedwallet === wallet"
+      >
+        <a
+          class="nav-link active"
+          (click)="selectedwallet = wallet"
+          aria-controls="one"
+          role="tab"
+          data-toggle="tab"
+          >{{ wallet }}</a
+        >
       </li>
     </ul>
-    <div id="myTabContent" class="tab-content">
-      <div class="tab-pane fade active show" id="descrip" >
-        <p>
-          {{kards[index].shortStory}}
-        </p>
 
+    <div class="tab-content">
+      <div
+        *ngIf="selectedwallet === coinwallet[0]"
+        role="tabpanel"
+        class="tab-pane active"
+        id="one"
+      >
+        {{kards[index].shortStory}}
       </div>
-      <div class="tab-pane fade" id="profile">
-        <p>
-          Food truck fixie locavore, accusamus mcsweeney's marfa nulla
-          single-origin coffee squid. Exercitation +1 labore velit, blog
-          sartorial PBR leggings next level wes anderson artisan four loko
-          farm-to-table craft beer twee. Qui photo booth letterpress, commodo
-          enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum
-          PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus
-          mollit.
-        </p>
+      <div
+        *ngIf="selectedwallet === coinwallet[1]"
+        role="tabpanel"
+        class="tab-pane active"
+        id="two"
+      >
+        <textarea class="form-control" id="nota_user"></textarea>
       </div>
     </div>
   </div>
 </div>
 
 <!--Paginación-->
-<div class="d-flex justify-content-center ">
+<div class="d-flex justify-content-center fixed-bottom">
   <ul class="pagination pagination-lg">
-    <li class="page-item" >
-      <button class="page-link" (click)="previousKard()" href="#">&laquo;</button>
+    <li class="page-item">
+      <button class="page-link" (click)="previousKard()" href="#">
+        &laquo;
+      </button>
     </li>
     <li class="page-item active" *ngFor="let foo of kards; let x = index">
-      <button class="page-link" (click)="kardIndexPag(x)" >{{x + 1}}</button>
+      <button class="page-link" (click)="kardIndexPag(x)">{{ x + 1 }}</button>
     </li>
     <li class="page-item">
-      <button class="page-link"  (click)="nextKard()">&raquo;</button>
+      <button class="page-link" (click)="nextKard()">&raquo;</button>
     </li>
   </ul>
 </div>

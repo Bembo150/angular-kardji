@@ -22,7 +22,7 @@
           >App</a
         >
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="mostrarRegistro">
         <a
           class="nav-link"
           [routerLink]="['/register']"
@@ -38,12 +38,24 @@
           >Practica</a
         >
       </li>
+
+      <li class="nav-item" *ngIf="mostrarRegistro">
+        <a
+          class="nav-link"
+          [routerLink]="['/login']"
+          [routerLinkActive]="['active']"
+          >Iniciar Sesión</a>
+      </li>
+      <li>
+        <a
+        class="nav-link"
+        [routerLink]="['/app']"
+        [routerLinkActive]="['active']"
+        *ngIf="!mostrarRegistro"
+        (click)="cerrarSesion()"
+        >Cerrar sesion</a
+      >
+      </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" />
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">
-        Search
-      </button>
-    </form>
   </div>
 </nav>

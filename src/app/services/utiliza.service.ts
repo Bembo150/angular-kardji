@@ -21,7 +21,7 @@ export class UtilizaService {
     )
   }
 
-  addUtiliza(utiliza : UtilizaId): Observable<Utiliza>{
+  addUtiliza(utiliza : Utiliza): Observable<Utiliza>{
     return this.http.post<Utiliza>(this.utilizaURL, utiliza).pipe(
       map(resp => resp)
     )

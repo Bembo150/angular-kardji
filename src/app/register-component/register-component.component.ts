@@ -20,8 +20,7 @@ export class RegisterComponentComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private router: Router,
-    private title: Title) {}
+    private router: Router) {}
 
   ngOnInit(): void {
     this.resetForm();

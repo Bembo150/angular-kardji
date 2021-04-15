@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, EventEmitter, ModuleWithComponentFactories, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Kard } from '../interface/kard';
 import { Lesson } from '../interface/lesson';
@@ -11,6 +12,7 @@ import { LessonsService } from '../services/lessons.service';
 import { ModalidadService } from '../services/modalidad.service';
 import { UserService } from '../services/user.service';
 import { UtilizaService } from '../services/utiliza.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'basic-mod-component',
@@ -18,13 +20,16 @@ import { UtilizaService } from '../services/utiliza.service';
   styleUrls: ['./basic-mod-component.component.css']
 })
 export class BasicModComponentComponent implements OnInit {
-  @Output() emitActiveLesson = new EventEmitter<UtilizaId>();
+  dateFormat = 'YYYY-MM-DDTHH:mm:ss';
+  now = moment(new Date(),this.dateFormat);
+
 
   public kards : Kard[] = []
   public modalidad : Modalidad = {} as Modalidad;
   public utiliza : Utiliza = {} as Utiliza;
   public lesson : Lesson = {} as Lesson ;
   public usuario : User = {} as User;
+  public localStorageUser !: User;
   public utilizaId : UtilizaId = {} as UtilizaId;
 
   aux1 : number[] = [1,2,3]
@@ -44,23 +49,19 @@ export class BasicModComponentComponent implements OnInit {
     private router: Router,
     ) {
 
+      this.localStorageUser = JSON.parse(localStorage.getItem('Usuario')!)
       this.modalidadService.getModalidadById(1).subscribe(
         (res) => {this.utiliza.modalidades = res, this.utilizaId.idModalidad = res.id});
 
-      this.userService.getUsuarioById(16).subscribe(
-        (user) => {this.utiliza.usuarios = user, this.utilizaId.idUsuario = user.id, this.utilizaId.fecha = user.lastLogIn},
-        (error) => console.log(error),
-        () => console.log("Operacion usuarios completada con exito.")
+      this.userService.getUsuarioById(this.localStorageUser.id).subscribe(
+        (user) => {this.utiliza.usuarios = user, this.utilizaId.idUsuario = user.id},
       )
       this.lessonService.getLessonById(this.lessonNum).subscribe(
         lesson => {this.utiliza.lecciones = lesson, this.utilizaId.idLeccion = lesson.id} ,
-        error => console.log(error),
-        () => console.log("Operacion lecciones completada con exito.")
       );
     }
 
   ngOnInit(): void {
-
     if(this.progressBar === 100){
       this.addUtiliza();
     }
@@ -90,9 +91,11 @@ export class BasicModComponentComponent implements OnInit {
 
     this.utiliza.id = this.utilizaId
     this.utiliza.fallos = this.errorCount
+    this.utilizaId.fecha = this.now.toISOString();
+
     localStorage.setItem('uId', JSON.stringify(this.utilizaId))
 
-    this.utilizaService.addUtiliza(this.utilizaId).subscribe(
+    this.utilizaService.addUtiliza(this.utiliza).subscribe(
       () => {
         console.log(this.utiliza)
         this.router.navigate(['/result']);
