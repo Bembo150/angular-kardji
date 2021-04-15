@@ -21,7 +21,7 @@ import * as moment from 'moment';
 })
 export class BasicModComponentComponent implements OnInit {
   dateFormat = 'YYYY-MM-DDTHH:mm:ss';
-  now = moment(new Date(),this.dateFormat);
+  now = moment(new Date(), this.dateFormat);
 
 
   public kards : Kard[] = []
