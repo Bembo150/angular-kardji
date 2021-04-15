@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Kard } from '../interface/kard';
 import { Lesson } from '../interface/lesson';
@@ -18,6 +18,7 @@ import { UtilizaService } from '../services/utiliza.service';
   styleUrls: ['./basic-mod-component.component.css']
 })
 export class BasicModComponentComponent implements OnInit {
+  @Output() emitActiveLesson = new EventEmitter<UtilizaId>();
 
   public kards : Kard[] = []
   public modalidad : Modalidad = {} as Modalidad;
@@ -31,6 +32,7 @@ export class BasicModComponentComponent implements OnInit {
   aux3 : number[] = [7,8,9]
 
   public auxRandomNum !: number;
+  public lessonNum = 1;
   public progressBar = 0;
   public errorCount = 0;
 
@@ -45,12 +47,12 @@ export class BasicModComponentComponent implements OnInit {
       this.modalidadService.getModalidadById(1).subscribe(
         (res) => {this.utiliza.modalidades = res, this.utilizaId.idModalidad = res.id});
 
-      this.userService.getUsuarioById(3).subscribe(
+      this.userService.getUsuarioById(16).subscribe(
         (user) => {this.utiliza.usuarios = user, this.utilizaId.idUsuario = user.id, this.utilizaId.fecha = user.lastLogIn},
         (error) => console.log(error),
         () => console.log("Operacion usuarios completada con exito.")
       )
-      this.lessonService.getLessonById(1).subscribe(
+      this.lessonService.getLessonById(this.lessonNum).subscribe(
         lesson => {this.utiliza.lecciones = lesson, this.utilizaId.idLeccion = lesson.id} ,
         error => console.log(error),
         () => console.log("Operacion lecciones completada con exito.")
@@ -62,8 +64,8 @@ export class BasicModComponentComponent implements OnInit {
     if(this.progressBar === 100){
       this.addUtiliza();
     }
-
-    this.lessonService.getLessonById(1).subscribe(
+    //Cada vez que se ejecuta el init cargamos un array de cartas ordenado aleatoriamente
+    this.lessonService.getLessonById(this.lessonNum).subscribe(
       lesson => this.kards = Array.from(lesson.cartases).sort(() => .5 - Math.random()),
       error => console.log(error),
       () => console.log("Operacion lecciones completada con exito.", this.kards)
@@ -71,30 +73,45 @@ export class BasicModComponentComponent implements OnInit {
 
     this.auxRandomNum = Math.floor(Math.random() * 9) + 1;
   }
-
+  //Comprobamos si la respuesta es correcta, y si lo es añadimos progreso y volvemos a cargar aleatoriamente otros kanjis de la leccion
   checkAnswer(question : number, answer : number){
 
     if(this.kards[question] === this.kards[answer]){
-      console.log("has ganao")
+
       this.progressBar = this.progressBar + 10;
       this.ngOnInit()
     }else {
-      console.log("has perdio")
+
       this.errorCount = this.errorCount + 1;
     }
   }
-
+  //Una vez compeltamos una secuencia de 10 respuestas correctas enviaremos el objeto utiliza formado a la BBDD
   addUtiliza() : void {
 
     this.utiliza.id = this.utilizaId
     this.utiliza.fallos = this.errorCount
+    localStorage.setItem('uId', JSON.stringify(this.utilizaId))
 
-    this.utilizaService.addUtiliza(this.utiliza).subscribe(
+    this.utilizaService.addUtiliza(this.utilizaId).subscribe(
       () => {
         console.log(this.utiliza)
-        this.router.navigate(['/app']);
+        this.router.navigate(['/result']);
       },
       (error: any) => console.error(error , this.utiliza)
     )
+  }
+
+  countChange(event : number){
+    if(this.lessonNum != event){
+      this.lessonNum = event
+      this.progressBar = 0
+      this.errorCount = 0
+      //Vuelvo a llamar a este metodo porque al cambiar de lección necesito la nueva lección y su id
+      this.lessonService.getLessonById(this.lessonNum).subscribe(
+        lesson => {this.utiliza.lecciones = lesson, this.utilizaId.idLeccion = lesson.id} ,
+        error => console.log(error),
+        () => console.log("Operacion lecciones completada con exito."));
+      this.ngOnInit()
+    }
   }
 }

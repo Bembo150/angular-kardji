@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ResponseUser, ResponseUtiliza } from '../interface/responses';
 import { Utiliza } from '../interface/utiliza';
+import { UtilizaId } from '../interface/utiliza-id';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,13 @@ export class UtilizaService {
 
   constructor(private http:HttpClient) { }
 
-  addUtiliza(utiliza : Utiliza): Observable<Utiliza>{
+  getUtilizaById(utilizaId : UtilizaId) : Observable<Utiliza> {
+    return this.http.get<Utiliza>(this.utilizaURL + "/" + utilizaId).pipe(
+      map(resp => resp)
+    )
+  }
+
+  addUtiliza(utiliza : UtilizaId): Observable<Utiliza>{
     return this.http.post<Utiliza>(this.utilizaURL, utiliza).pipe(
       map(resp => resp)
     )
