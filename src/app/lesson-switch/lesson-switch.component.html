@@ -1,7 +1,7 @@
 <button
   *ngFor="let i of genArray(lessons.length); let x = index"
   (click)="activeLesson(x)"
-  class="btn btn-primary mx-auto"
+  class="btn btn-primary m-5 d-flex justify-content-center"
 >
   <p>Lección {{ x + 1 }}</p>
 </button>

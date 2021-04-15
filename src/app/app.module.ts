@@ -10,9 +10,13 @@ import { FootComponentComponent } from './foot-component/foot-component.componen
 import { FormsModule } from '@angular/forms';
 import { RegisterComponentComponent } from './register-component/register-component.component';
 import { LessonSwitchComponent } from './lesson-switch/lesson-switch.component';
+import { LogInComponent } from './log-in/log-in.component';
 
 const APP_ROUTES: Route[] = [{path:'app', component:KardComponentComponent},
 {path:'register', component:RegisterComponentComponent},
+{path:'login', component:LogInComponent},
+{path:'auth/login',component:LogInComponent},
+{path:'auth/register', component:RegisterComponentComponent},
 {path:'', redirectTo:'/app',pathMatch:'full'},
 {path:'**', redirectTo:'/app',pathMatch:'full'}];
 
@@ -23,7 +27,8 @@ const APP_ROUTES: Route[] = [{path:'app', component:KardComponentComponent},
     NavComponentComponent,
     FootComponentComponent,
     RegisterComponentComponent,
-    LessonSwitchComponent
+    LessonSwitchComponent,
+    LogInComponent
   ],
   imports: [
     BrowserModule,

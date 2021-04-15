@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavComponentComponent } from './nav-component.component';
+import { LogInComponent } from './log-in.component';
 
-describe('NavComponentComponent', () => {
-  let component: NavComponentComponent;
-  let fixture: ComponentFixture<NavComponentComponent>;
+describe('LogInComponent', () => {
+  let component: LogInComponent;
+  let fixture: ComponentFixture<LogInComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NavComponentComponent ]
+      declarations: [ LogInComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NavComponentComponent);
+    fixture = TestBed.createComponent(LogInComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -22,5 +22,4 @@ describe('NavComponentComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
 });

@@ -18,6 +18,10 @@ export class KardComponentComponent implements OnInit {
   lessonNum = 1;
   index : number = 0;
 
+
+  coinwallet: string[] = ['Descripción'];
+  selectedwallet = this.coinwallet[0];
+
   ngOnInit() {
 
     this.lessonService.getLessonById(this.lessonNum).subscribe(
