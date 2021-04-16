@@ -14,11 +14,12 @@
 
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="!mostrarRegistro">
         <a
           class="nav-link"
           [routerLink]="['/app']"
           [routerLinkActive]="['active']"
+
           >App</a
         >
       </li>

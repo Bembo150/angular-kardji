@@ -15,13 +15,14 @@ import { LogInComponent } from './log-in/log-in.component';
 import { AuthTokenInterceptor } from './interceptors/auth-token.interceptor';
 import { LoginGuard } from './guards/login.guard';
 
-const APP_ROUTES: Route[] = [{path:'app', component:KardComponentComponent},
+const APP_ROUTES: Route[] = [
 {path:'auth/login',component:LogInComponent},
+{path:'app', component:KardComponentComponent, canActivate:  [LoginGuard]},
 {path:'auth/register', component:RegisterComponentComponent},
 {path: 'mod', component:BasicModComponentComponent, canActivate:  [LoginGuard]},
 {path: 'result', component:ModalidadResultComponentComponent, canActivate:  [LoginGuard]},
-{path:'', redirectTo:'/app',pathMatch:'full'},
-{path:'**', redirectTo:'/app',pathMatch:'full'}];
+{path:'', redirectTo:'auth/login',pathMatch:'full'},
+{path:'**', redirectTo:'auth/login',pathMatch:'full'}];
 
 @NgModule({
   declarations: [
