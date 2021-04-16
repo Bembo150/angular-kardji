@@ -10,26 +10,26 @@ import { User } from '../interface/user';
 })
 export class NavComponentComponent implements OnInit {
 
-  token = "";
+  token !: string;
   mostrarRegistro = true;
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.token = JSON.parse(localStorage.getItem("token") || '{}');
-    this.comprobarUser();
+    this.token = localStorage.getItem("token")!;
+    this.comprobarToken();
   }
 
   cerrarSesion() {
     this.mostrarRegistro = true;
     localStorage.removeItem('token');
-    this.router.navigate(['auth', 'login']);
+    this.router.navigate(['/auth', 'login']);
   }
 
-  comprobarUser() {
-    console.log("Entra");
-    if (this.token == "") {
+  comprobarToken() {
+    if (this.token != null) {
       this.mostrarRegistro = false;
+      this.router.navigate(['/app']);
     }
   }
 

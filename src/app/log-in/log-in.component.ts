@@ -16,8 +16,6 @@ export class LogInComponent implements OnInit {
     name: '',
     password: ''
   };
-  nombreUser !: string;
-  contraUser !: string;
   error = false;
 
   constructor(
@@ -30,7 +28,7 @@ export class LogInComponent implements OnInit {
 
   login() {
     this.authService.login(this.UsuarioEntr).subscribe(
-      () => this.router.navigate(['/app']),
+      () => {this.router.navigate(['/app']); window.location.reload();},
       error => this.error = true
     );
   }
