@@ -16,12 +16,10 @@ import { AuthTokenInterceptor } from './interceptors/auth-token.interceptor';
 import { LoginGuard } from './guards/login.guard';
 
 const APP_ROUTES: Route[] = [{path:'app', component:KardComponentComponent},
-{path:'register', component:RegisterComponentComponent},
-{path:'login', component:LogInComponent},
 {path:'auth/login',component:LogInComponent},
+{path:'auth/register', component:RegisterComponentComponent},
 {path: 'mod', component:BasicModComponentComponent, canActivate:  [LoginGuard]},
 {path: 'result', component:ModalidadResultComponentComponent, canActivate:  [LoginGuard]},
-{path:'auth/register', component:RegisterComponentComponent},
 {path:'', redirectTo:'/app',pathMatch:'full'},
 {path:'**', redirectTo:'/app',pathMatch:'full'}];
 
