@@ -13,6 +13,7 @@ import { ModalidadService } from '../services/modalidad.service';
 import { UserService } from '../services/user.service';
 import { UtilizaService } from '../services/utiliza.service';
 import * as moment from 'moment';
+import { TokenIdInfo } from '../interface/token-id-info';
 
 @Component({
   selector: 'basic-mod-component',
@@ -29,7 +30,6 @@ export class BasicModComponentComponent implements OnInit {
   public utiliza : Utiliza = {} as Utiliza;
   public lesson : Lesson = {} as Lesson ;
   public usuario : User = {} as User;
-  public localStorageUser !: User;
   public utilizaId : UtilizaId = {} as UtilizaId;
 
   aux1 : number[] = [1,2,3]
@@ -41,6 +41,10 @@ export class BasicModComponentComponent implements OnInit {
   public progressBar = 0;
   public errorCount = 0;
 
+  accessTokenObj: string = localStorage.getItem('token')!;
+  tokenSplited = this.accessTokenObj.split(".",3)
+  tokenInfo : TokenIdInfo = JSON.parse(atob(this.tokenSplited[1]));
+
   constructor(
     private lessonService: LessonsService,
     private modalidadService: ModalidadService,
@@ -49,11 +53,11 @@ export class BasicModComponentComponent implements OnInit {
     private router: Router,
     ) {
 
-      this.localStorageUser = JSON.parse(localStorage.getItem('Usuario')!)
+
       this.modalidadService.getModalidadById(1).subscribe(
         (res) => {this.utiliza.modalidades = res, this.utilizaId.idModalidad = res.id});
 
-      this.userService.getUsuarioById(this.localStorageUser.id).subscribe(
+      this.userService.getUsuarioById(this.tokenInfo.id).subscribe(
         (user) => {this.utiliza.usuarios = user, this.utilizaId.idUsuario = user.id},
       )
       this.lessonService.getLessonById(this.lessonNum).subscribe(
@@ -62,6 +66,7 @@ export class BasicModComponentComponent implements OnInit {
     }
 
   ngOnInit(): void {
+
     if(this.progressBar === 100){
       this.addUtiliza();
     }
@@ -93,7 +98,8 @@ export class BasicModComponentComponent implements OnInit {
     this.utiliza.fallos = this.errorCount
     this.utilizaId.fecha = this.now.toISOString();
 
-    localStorage.setItem('uId', JSON.stringify(this.utilizaId))
+    localStorage.setItem('fallos', this.utiliza.fallos.toString())
+
 
     this.utilizaService.addUtiliza(this.utiliza).subscribe(
       () => {
