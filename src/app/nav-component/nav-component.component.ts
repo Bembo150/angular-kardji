@@ -1,4 +1,6 @@
+import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '../interface/user';
 
 @Component({
@@ -11,7 +13,7 @@ export class NavComponentComponent implements OnInit {
   usuario !: User;
   mostrarRegistro !: boolean;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.usuario = JSON.parse(localStorage.getItem("Usuario") || '{}');
@@ -20,7 +22,8 @@ export class NavComponentComponent implements OnInit {
 
   cerrarSesion() {
     this.mostrarRegistro = true;
-    localStorage.clear();
+    localStorage.removeItem('token');
+    this.router.navigate(['auth', 'login']);
   }
 
   comprobarUser() {

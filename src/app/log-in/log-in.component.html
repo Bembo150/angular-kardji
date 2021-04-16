@@ -1,6 +1,6 @@
 <div style="margin: 5%">
   <h3>Inicio de sesion</h3>
-  <form (ngSubmit)="logIn()" #formProduct="ngForm">
+  <form (ngSubmit)="login()" #formProduct="ngForm">
     <!-- Email input -->
     <div class="form-outline mb-4">
       <input
@@ -8,7 +8,7 @@
         id="form1Example1"
         class="form-control"
         name="nombreUser"
-        [(ngModel)]="nombreUser"
+        [(ngModel)]="UsuarioEntr.name"
         placeholder="Nombre de usuario"
       />
     </div>
@@ -20,10 +20,11 @@
         id="form1Example2"
         class="form-control"
         name="contraseña"
-        [(ngModel)]="contraUser"
+        [(ngModel)]="UsuarioEntr.password"
         placeholder="Contraseña"
       />
     </div>
+    <p class="text-danger" *ngIf="error">Usuario y/o contraseña no validos</p>
 
     <!-- Submit button -->
     <button type="submit" class="btn btn-primary btn-block">Entrar</button>

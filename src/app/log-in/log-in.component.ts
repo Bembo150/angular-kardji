@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../interface/user';
+import { UserDTO } from '../interface/user-dto';
+import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -11,11 +13,17 @@ import { UserService } from '../services/user.service';
 export class LogInComponent implements OnInit {
 
   Usuarios : User[] = [];
-  UsuarioEntr !: User;
+  UsuarioEntr : UserDTO = {
+    name: '',
+    password: ''
+  };
   nombreUser !: string;
   contraUser !: string;
+  error = false;
 
-  constructor(private userService: UserService,
+  constructor(
+    private userService: UserService,
+    private authService: AuthService,
     private router: Router) { }
 
 
@@ -27,9 +35,17 @@ export class LogInComponent implements OnInit {
     );
   }
 
+  login() {
+    this.authService.login(this.UsuarioEntr).subscribe(
+      () => this.router.navigate(['/app']),
+      error => this.error = true
+    );
+  }
+
+  //Forma antigua de hacerlo
   logIn() {
       this.ComprobarUsuario()
-      this.router.navigate(['/app']);
+      this.login();
   }
 
   ComprobarUsuario() {

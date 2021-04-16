@@ -3,6 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../interface/user';
 import { Utiliza } from '../interface/utiliza';
+import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -20,6 +21,7 @@ export class RegisterComponentComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private authService: AuthService,
     private router: Router) {}
 
   ngOnInit(): void {
@@ -43,6 +45,13 @@ export class RegisterComponentComponent implements OnInit {
     reader.addEventListener('load', () => { //Converted into Base64 event (async)
       this.User.imageUrl = reader.result as string;
     });
+  }
+
+  registrarse() {
+    this.authService.register(this.User).subscribe(
+      () => this.router.navigate(['/auth','login']),
+      error => console.log(error)
+    );
   }
 
   addUser(): void {

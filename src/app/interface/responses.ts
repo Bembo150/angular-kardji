@@ -1,3 +1,4 @@
+import { Token } from '@angular/compiler/src/ml_parser/lexer';
 import { Kard } from './kard';
 import { Lesson } from './lesson';
 import { User } from './user';
@@ -43,4 +44,8 @@ export interface ResponseLesson {
 
   lesson : Lesson;
 
+}
+
+export interface ResponseToken {
+  accessToken : string;
 }

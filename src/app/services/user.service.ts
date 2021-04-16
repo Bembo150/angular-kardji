@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ResponseUser } from '../interface/responses';
+import { ResponseUser, ResponseUsers } from '../interface/responses';
 import { User } from '../interface/user';
 
 @Injectable({
@@ -20,6 +20,12 @@ export class UserService {
       map(resp => resp.Users)
     );
 
+  }
+
+  getAll(): Observable<User[]> {
+    return this.http.get<ResponseUsers>(this.usersURL, {headers: {'Authorization': 'Bearer' + localStorage.getItem("token")}}).pipe(
+      map(resp => resp.Users)
+    );
   }
 
   getUsuarios(): Observable<User[]> {
