@@ -10,13 +10,13 @@ import { User } from '../interface/user';
 })
 export class NavComponentComponent implements OnInit {
 
-  usuario !: User;
-  mostrarRegistro !: boolean;
+  token = "";
+  mostrarRegistro = true;
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.usuario = JSON.parse(localStorage.getItem("Usuario") || '{}');
+    this.token = JSON.parse(localStorage.getItem("token") || '{}');
     this.comprobarUser();
   }
 
@@ -28,7 +28,7 @@ export class NavComponentComponent implements OnInit {
 
   comprobarUser() {
     console.log("Entra");
-    if (this.usuario != null) {
+    if (this.token == "") {
       this.mostrarRegistro = false;
     }
   }
