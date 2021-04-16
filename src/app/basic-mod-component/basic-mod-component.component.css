@@ -1,1 +1,9 @@
+button {
+  height: 100px;
+  width: 100px;
+  margin: 2px;
+}
 
+p {
+  font-size: 200%;
+}
