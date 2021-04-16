@@ -11,12 +11,12 @@ import { UtilizaId } from '../interface/utiliza-id';
 })
 export class UtilizaService {
 
-  private utilizaURL = 'http://localhost:8080/api/utiliza';
+  private utilizaURL = 'http://localhost:8080/api/utiliza/';
 
   constructor(private http:HttpClient) { }
 
   getUtilizaById(utilizaId : UtilizaId) : Observable<Utiliza> {
-    return this.http.get<Utiliza>(this.utilizaURL + "/" + utilizaId).pipe(
+    return this.http.get<Utiliza>(this.utilizaURL + utilizaId).pipe(
       map(resp => resp)
     )
   }
