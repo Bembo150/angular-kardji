@@ -26,7 +26,7 @@ export class RegisterComponentComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getUsuarios().subscribe(
-      (users) => {this.UserTotales = users.length -1, console.log("TOTAAAAL" + this.UserTotales + "USERLENGHT" + users.length)},
+      (users) => this.UserTotales = users.length
     );
     this.resetForm();
 
@@ -47,7 +47,7 @@ export class RegisterComponentComponent implements OnInit {
   }
 
   registrarse() {
-    this.User.id = this.UserTotales;
+    this.User.id = this.UserTotales+1;
     this.authService.register(this.User).subscribe(
       () => this.router.navigate(['/auth','login']),
       error => console.log(error)
