@@ -23,7 +23,7 @@ export class UserService {
   }
 
   getAll(): Observable<User[]> {
-    return this.http.get<ResponseUsers>(this.usersURL, {headers: {'Authorization': 'Bearer' + localStorage.getItem("token")}}).pipe(
+    return this.http.get<ResponseUsers>(this.usersURL).pipe(
       map(resp => resp.Users)
     );
   }
@@ -31,6 +31,7 @@ export class UserService {
   getUsuarios(): Observable<User[]> {
 
     return this.http.get<User[]>(this.usersURL).pipe(
+      map(resp=>resp)
     );
   }
 

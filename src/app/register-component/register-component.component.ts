@@ -15,7 +15,7 @@ export class RegisterComponentComponent implements OnInit {
 
   productAdded = false;
   User !: User;
-  UserTotales : number = 0;
+  UserTotales !: number;
   imageFile = '';
   today = new Date(Date.now());
 
@@ -25,12 +25,11 @@ export class RegisterComponentComponent implements OnInit {
     private router: Router) {}
 
   ngOnInit(): void {
-    this.resetForm();
     this.userService.getUsuarios().subscribe(
-      users => this.UserTotales = users.length,
-      error => console.log(error),
-      () => console.log(this.UserTotales)
+      (users) => {this.UserTotales = users.length -1, console.log("TOTAAAAL" + this.UserTotales + "USERLENGHT" + users.length)},
     );
+    this.resetForm();
+
   }
 
   loadImage(input: HTMLInputElement): void {
@@ -48,6 +47,7 @@ export class RegisterComponentComponent implements OnInit {
   }
 
   registrarse() {
+    this.User.id = this.UserTotales;
     this.authService.register(this.User).subscribe(
       () => this.router.navigate(['/auth','login']),
       error => console.log(error)
