@@ -1,13 +1,13 @@
 
-<div class="d-flex flex-row align-items-center justify-content-center flex-column">
+<div class="d-flex flex-row align-items-center justify-content-center flex-column" style="margin-top: 2%;">
 
   <lesson-switch (emitActiveLesson)="countChange($event)"></lesson-switch>
 
-  <div>
+  <div style="margin-top: 2%">
     <p>{{kards[auxRandomNum].keyWord}}</p>
   </div>
 
-  <div >
+  <div style="margin-top: 2%">
     <span class="d-flex flex-row">
       <button type="button" class="btn btn-outline-primary" *ngFor="let num of aux1" (click)="checkAnswer(auxRandomNum, num)"><p>{{kards[num].kanjiChar}}</p></button>
     </span>

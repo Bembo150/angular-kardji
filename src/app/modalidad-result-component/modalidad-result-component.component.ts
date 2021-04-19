@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import * as moment from 'moment';
 import { Utiliza } from '../interface/utiliza';
 import { UtilizaId } from '../interface/utiliza-id';
 import { UtilizaService } from '../services/utiliza.service';
@@ -10,6 +11,9 @@ import { UtilizaService } from '../services/utiliza.service';
   styleUrls: ['./modalidad-result-component.component.css'],
 })
 export class ModalidadResultComponentComponent implements OnInit {
+  dateFormat = 'YYYY-MM-DDTHH:mm:ss';
+  now = moment(new Date(), this.dateFormat);
+
   fallos !: string;
 
   constructor(
@@ -19,6 +23,7 @@ export class ModalidadResultComponentComponent implements OnInit {
 
   ngOnInit(): void {
     this.fallos = localStorage.getItem('fallos')!;
+    this.now.toString();
   }
 
 }
